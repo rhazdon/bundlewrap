@@ -196,7 +196,7 @@ class Item(object):
 
     def _check_bundle_collisions(self, items):
         for item in items:
-            if item == self:
+            if item == self or (hasattr(item, 'pkg_manager') or isinstance(item, pkg.Pkg)):
                 continue
             if item.id == self.id:
                 raise BundleError(_(
